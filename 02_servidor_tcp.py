@@ -57,7 +57,7 @@ while True:
         enviar_mensagem(conexao, "Conversa encerrada.")
         break
     else:
-        print("Comando desconhecido")
+        print("[ALERTA] Comando desconhecido:", mensagem)
         enviar_mensagem(conexao, "Comando desconhecido. Use /msg <texto>, /hora ou /sair")
 
 
