@@ -1,5 +1,5 @@
 def enviar_mensagem(socket_conexao, mensagem):
-    dados = mensagem.encode("utf-8")
+    dados = (mensagem + "\n").encode("utf-8")
     socket_conexao.sendall(dados)
 
 
@@ -9,4 +9,4 @@ def receber_mensagem(socket_conexao):
     if not dados:
         return None
 
-    return dados.decode("utf-8")
+    return dados.decode("utf-8").rstrip("\n")
