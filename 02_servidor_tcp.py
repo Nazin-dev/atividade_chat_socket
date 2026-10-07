@@ -3,7 +3,7 @@ import socket
 from protocolo_tcp import enviar_mensagem, receber_mensagem
 
 
-HOST = "127.0.0.1"
+HOST = "0.0.0.0"
 PORTA = 9000
 
 
