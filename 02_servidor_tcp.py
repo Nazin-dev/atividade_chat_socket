@@ -1,4 +1,5 @@
 import socket
+from datetime import datetime
 
 from protocolo_tcp import enviar_mensagem, receber_mensagem
 
@@ -44,9 +45,20 @@ while True:
         print("Cliente desconectou.")
         break
 
-    print("Recebido:", mensagem)
-    resposta = "ECO: " + mensagem
-    enviar_mensagem(conexao, resposta)
+    if mensagem.startswith("/msg "):
+        print("Cliente:", mensagem[5:])
+        resposta = input("Resposta: ")
+        enviar_mensagem(conexao, resposta)
+    elif mensagem == "/hora":
+        print("Cliente pediu o horário")
+        enviar_mensagem(conexao, "Horário do servidor: " + datetime.now().strftime("%H:%M"))
+    elif mensagem == "/sair":
+        print("Cliente encerrou a conversa")
+        enviar_mensagem(conexao, "Conversa encerrada.")
+        break
+    else:
+        print("Comando desconhecido")
+        enviar_mensagem(conexao, "Comando desconhecido. Use /msg <texto>, /hora ou /sair")
 
 
 conexao.close()
